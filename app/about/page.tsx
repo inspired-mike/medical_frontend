@@ -8,7 +8,7 @@ const pillars = [
   {
     label: 'Mission',
     title: 'Why we exist',
-    body: 'We believe many businesses spend too much time on repetive tasks that slow growth and drain productivity. Our goal is to replace these manual processes with intelligent automation systems that allow teams to focus on higher-value work.',
+    body: 'We believe many businesses spend too much time on repetitive tasks that slow growth and drain productivity. Our goal is to replace these manual processes with intelligent automation systems that allow teams to focus on higher-value work.',
     icon: '◎',
     // Mission — freeing teams from manual work: circuit board (tech foundation replacing old processes)
     img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
