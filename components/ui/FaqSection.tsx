@@ -11,10 +11,6 @@ const faqs = [
     a: "Most projects are live within 2-4 weeks. For more complex builds, we can often have a proof of concept running in under a week, allowing you to see it in action before committing to the full rollout."
   },
   {
-    q: "Who owns the developed AI systems?",
-    a: "You retain full ownership of the solution and how it’s used within your business. We build systems either within your existing tools or manage them on your behalf, depending on what’s most effective. You’ll always have full visibility, with the option for handover if required."
-  },
-  {
     q: "How does pricing work?",
     a: "It depends entirely on what you need. After our discovery call, we'll put together a custom pricing structure that fits your project scope and the specific outcomes you're looking for."
   },
