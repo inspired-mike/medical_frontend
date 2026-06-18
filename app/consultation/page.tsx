@@ -5,7 +5,7 @@ import AnimatedSection from '@/components/ui/AnimatedSection'
 import { useEffect, useRef, useState } from 'react'
 
 const CALENDLY_URL =
-  'https://calendly.com/michael-impackta?text_color=ffffff&background_color=0b1120'
+  'https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1'
 const CALENDLY_SCRIPT_SRC = 'https://assets.calendly.com/assets/external/widget.js'
 const CALENDLY_SCRIPT_ID = 'calendly-script'
 const LOAD_TIMEOUT_MS = 10_000
