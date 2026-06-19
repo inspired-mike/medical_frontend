@@ -242,7 +242,7 @@ export default function ServicesPage() {
 
           <AnimatedSection delay={2}>
             <div style={{ textAlign: 'center', marginTop: 56 }}>
-              <Button href="https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
+              <Button href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
                 Book a Free AI Consultation
               </Button>
             </div>

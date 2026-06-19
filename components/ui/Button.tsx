@@ -61,7 +61,7 @@ export default function Button({
         onClick={isCalendly ? (e) => {
           e.preventDefault()
           window.open(
-            'https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1&background_color=0b1120&text_color=ffffff&primary_color=2563eb',
+            'https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1',
             '_blank',
             'noopener,noreferrer'
           )

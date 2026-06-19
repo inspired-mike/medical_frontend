@@ -416,7 +416,7 @@ export default function SolutionsPage() {
                 Not sure which solution is right for you? Book a free consultation and we will
                 identify the highest-impact opportunities for your business.
               </p>
-                <Button href="https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
+                <Button href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
                 Book a Free AI Consultation
               </Button>
             </div>

@@ -303,7 +303,7 @@ export default function HomePage() {
                 onMouseLeave={resetMagnet}
                 style={{ display: 'inline-block', transition: 'transform 0.2s ease' }}
               >
-                <Button href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1&background_color=0b1120&text_color=ffffff&primary_color=2563eb" variant="primary" size="lg" className="btn-shimmer">
+                <Button href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
                   Book a Free AI Consultation
                 </Button>
               </div>
@@ -669,7 +669,7 @@ export default function HomePage() {
 
           <AnimatedSection>
             <div className="text-center mt-4">
-              <Button href="https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
+              <Button href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
                 Book a Free AI Consultation
               </Button>
             </div>

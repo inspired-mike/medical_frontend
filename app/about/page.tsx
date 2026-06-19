@@ -392,7 +392,7 @@ export default function AboutPage() {
                 We are building a future where no team member wastes their talent on a task a machine
                 can handle — freeing people to do the work that actually matters.
               </p>
-              <Button href="https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
+              <Button href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
                 Start the Conversation
               </Button>
             </div>

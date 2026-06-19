@@ -261,7 +261,7 @@ export default function ROICalculator() {
             </div>
           </div>
 
-          <a href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1&background_color=0b1120&text_color=ffffff&primary_color=2563eb" target="_blank" rel="noopener noreferrer">
+          <a href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1" target="_blank" rel="noopener noreferrer">
             <button
               style={{
                 width: '100%',

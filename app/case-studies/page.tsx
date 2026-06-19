@@ -266,7 +266,7 @@ export default function CaseStudiesPage() {
 
         {/* CTA */}
         <div style={{ marginTop: 40, animation: 'fade-up 0.45s ease 0.7s both' }}>
-          <Button href="https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1" size="lg">
+          <Button href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1" size="lg">
             Book Consultation
           </Button>
         </div>

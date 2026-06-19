@@ -84,7 +84,7 @@ export default function Navbar() {
               </Link>
             )
           })}
-          <Button size="sm" href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1&background_color=0b1120&text_color=ffffff&primary_color=2563eb">
+          <Button size="sm" href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1">
             Book Consultation
           </Button>
         </div>
@@ -156,7 +156,7 @@ export default function Navbar() {
               onClick={() => {
                 setOpen(false)
                 window.open(
-                  'https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1&background_color=0b1120&text_color=ffffff&primary_color=2563eb',
+                  'https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1',
                   '_blank',
                   'noopener,noreferrer'
                 )

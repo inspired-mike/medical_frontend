@@ -106,7 +106,7 @@ export default function FaqSection() {
             <p style={{ fontSize: 15, color: '#94a3b8', marginBottom: 24 }}>
               Schedule a call with our Founders to clear any doubts.
             </p>
-            <Button href="https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
+            <Button href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
               Book a Free AI Consultation
             </Button>
             <p style={{ fontSize: 14, color: '#64748b', marginTop: 16 }}>

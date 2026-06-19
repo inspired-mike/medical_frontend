@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 const CALENDLY_URL =
-  'https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1'
+  'https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1'
 const CALENDLY_SCRIPT_SRC = 'https://assets.calendly.com/assets/external/widget.js'
 const CALENDLY_SCRIPT_ID = 'calendly-script'
 

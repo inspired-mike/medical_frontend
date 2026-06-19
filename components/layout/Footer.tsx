@@ -40,7 +40,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1&background_color=0b1120&text_color=ffffff&primary_color=2563eb" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors cursor-pointer">
+                <a href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors cursor-pointer">
                   Book a consultation
                 </a>
               </li>

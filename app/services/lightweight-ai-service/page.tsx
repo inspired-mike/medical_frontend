@@ -90,7 +90,7 @@ export default function AIAutomationsPage() {
               Designed to eliminate repetitive, time-consuming tasks that slow you down. These solutions help you operate more efficiently, present more professionally, and focus on the work that matters most.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Button href="https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
+              <Button href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer">
                 Book a Free AI Consultation
               </Button>
               <div className="flex items-center gap-3 px-6 py-4 rounded-xl bg-white/5 border border-white/10 text-sm font-bold backdrop-blur-sm">
@@ -180,7 +180,7 @@ export default function AIAutomationsPage() {
                   Automate repetitive work and start seeing results fast. Let&apos;s find your quick wins.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-6">
-                  <Button href="https://calendly.com/michael-impackta?background_color=0b1120&text_color=ffffff&primary_color=7dd3fc&hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer px-12 py-5 text-lg">
+                  <Button href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1" variant="primary" size="lg" className="btn-shimmer px-12 py-5 text-lg">
                     Book a Free AI Consultation
                   </Button>
                 </div>
