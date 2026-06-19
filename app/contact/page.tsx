@@ -327,7 +327,7 @@ export default function ContactPage() {
                     <Button
                       variant="primary"
                       className="w-full py-4 text-center justify-center font-bold"
-                      href="/consultation"
+                      href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1&background_color=0b1120&text_color=ffffff&primary_color=2563eb"
                     >
                       Book a Consultation
                     </Button>

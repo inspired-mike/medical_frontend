@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
 function useAnimatedNumber(target: number) {
@@ -262,7 +261,7 @@ export default function ROICalculator() {
             </div>
           </div>
 
-          <Link href="/consultation">
+          <a href="https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1&background_color=0b1120&text_color=ffffff&primary_color=2563eb" target="_blank" rel="noopener noreferrer">
             <button
               style={{
                 width: '100%',
@@ -290,7 +289,7 @@ export default function ROICalculator() {
             >
               Book a Free Strategy Call →
             </button>
-          </Link>
+          </a>
         </div>
       </div>
     </div>
