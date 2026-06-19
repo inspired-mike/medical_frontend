@@ -60,7 +60,11 @@ export default function Button({
         rel="noopener noreferrer"
         onClick={isCalendly ? (e) => {
           e.preventDefault()
-          window.location.href = '/consultation'
+          window.open(
+            'https://calendly.com/michael-impackta/ai-discovery-call?hide_gdpr_banner=1&background_color=0b1120&text_color=ffffff&primary_color=2563eb',
+            '_blank',
+            'noopener,noreferrer'
+          )
         } : undefined}
       >
         {children}
