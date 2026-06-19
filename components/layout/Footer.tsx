@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-secondary border-t border-glass-border pt-16 pb-8">
       <div className="container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-10 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.4fr] gap-10 mb-12">
           {/* Brand */}
           <div>
             <p className="text-xl font-extrabold mb-4">
