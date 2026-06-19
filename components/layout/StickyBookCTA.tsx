@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { openCalendlyPopup } from '@/components/ui/calendly'
 
 export default function StickyBookCTA() {
   const [visible, setVisible] = useState(true)
@@ -29,7 +28,7 @@ export default function StickyBookCTA() {
         
         <div 
           className="relative px-4 py-2.5 rounded-full bg-[#0b1120] border border-blue-500/30 text-white shadow-2xl flex items-center gap-2 hover:border-blue-400 transition-all cursor-pointer group"
-          onClick={() => openCalendlyPopup()}
+          onClick={() => window.location.href = '/consultation'}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
           <span className="font-bold text-xs uppercase tracking-tight">Book a Free Call</span>

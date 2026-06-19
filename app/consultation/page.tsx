@@ -2,16 +2,99 @@
 
 import Image from 'next/image'
 import AnimatedSection from '@/components/ui/AnimatedSection'
-import { useEffect } from 'react'
-import { openCalendlyPopup } from '@/components/ui/calendly'
+import { useEffect, useRef, useState } from 'react'
 
-export default function ConsultationPage() {
+const CALENDLY_URL =
+  'https://calendly.com/michael-impackta?text_color=ffffff&background_color=0b1120'
+const CALENDLY_SCRIPT_SRC = 'https://assets.calendly.com/assets/external/widget.js'
+const CALENDLY_SCRIPT_ID = 'calendly-script'
+const LOAD_TIMEOUT_MS = 10_000
+
+export default function ContactPage() {
+  const [isLoading, setIsLoading] = useState(true)
+  const widgetRef = useRef<HTMLDivElement>(null)
+  const outerRef = useRef<HTMLDivElement>(null)
+  const doneRef = useRef(false)
+
   useEffect(() => {
-    // Open the Calendly popup automatically on arrival. The popup renders the
-    // real hosted page (correctly themed dark), unlike the inline embed which
-    // cannot theme its input fields.
-    const t = setTimeout(() => openCalendlyPopup(), 400)
-    return () => clearTimeout(t)
+    const markLoaded = () => {
+      if (doneRef.current) return
+      doneRef.current = true
+      setIsLoading(false)
+    }
+
+    const hardTimer = setTimeout(markLoaded, LOAD_TIMEOUT_MS)
+
+    // ── postMessage: Calendly fires real rendered height on every view change ──
+    const onMessage = (e: MessageEvent) => {
+      if (
+        e.data &&
+        typeof e.data === 'object' &&
+        e.data.event === 'calendly.page_height'
+      ) {
+        const h: number = e.data.payload?.height
+        if (h && h > 100) {
+          // Add 40px buffer so the iframe is always TALLER than its content.
+          // This is the only way to kill the internal scrollbar — CSS on the
+          // iframe element cannot reach inside a cross-origin document.
+          const buffered = h + 40
+
+          // Resize the iframe element itself (not just the wrapper)
+          const iframe = widgetRef.current?.querySelector('iframe') as HTMLIFrameElement | null
+          if (iframe) iframe.style.height = buffered + 'px'
+
+          // Resize widget div and outer container to match
+          if (widgetRef.current) widgetRef.current.style.height = buffered + 'px'
+          if (outerRef.current) outerRef.current.style.height = buffered + 'px'
+        }
+        markLoaded()
+      }
+    }
+    window.addEventListener('message', onMessage)
+
+    // ── MutationObserver: fallback — detect iframe injection ──
+    const observer = new MutationObserver(() => {
+      const iframe = widgetRef.current?.querySelector('iframe')
+      if (!iframe) return
+      observer.disconnect()
+
+      iframe.addEventListener('load', () => {
+        setTimeout(markLoaded, 600)
+      })
+      // If load already fired
+      setTimeout(markLoaded, 1500)
+    })
+
+    if (widgetRef.current) {
+      observer.observe(widgetRef.current, { childList: true, subtree: true })
+    }
+
+    // ── Inject / reuse Calendly script ──
+    const existing = document.getElementById(CALENDLY_SCRIPT_ID) as HTMLScriptElement | null
+    if (existing) {
+      if (typeof (window as any).Calendly !== 'undefined') {
+        ;(window as any).Calendly.initInlineWidget({
+          url: CALENDLY_URL,
+          parentElement: widgetRef.current,
+        })
+      }
+    } else {
+      const script = document.createElement('script')
+      script.id = CALENDLY_SCRIPT_ID
+      script.src = CALENDLY_SCRIPT_SRC
+      script.async = true
+      script.onerror = () => {
+        console.error('[Calendly] Script failed to load')
+        markLoaded()
+      }
+      document.body.appendChild(script)
+    }
+
+    return () => {
+      clearTimeout(hardTimer)
+      observer.disconnect()
+      window.removeEventListener('message', onMessage)
+    }
   }, [])
 
   return (
@@ -85,62 +168,150 @@ export default function ConsultationPage() {
         </div>
       </section>
 
-      {/* Booking CTA Section */}
-      <section style={{ background: '#0b1120', paddingBottom: '6rem', overflow: 'hidden' }}>
+      {/* Calendar Section */}
+      <section style={{ background: '#0b1120', paddingBottom: '5rem', overflow: 'hidden' }}>
         <div className="container">
           <AnimatedSection>
+            {/*
+              outerRef — height auto-adjusts via postMessage from Calendly.
+              Starts at 700px (desktop), shrinks to ~420px on mobile automatically.
+            */}
             <div
+              ref={outerRef}
               style={{
-                maxWidth: 640,
+                position: 'relative',
+                width: '100%',
+                maxWidth: '1000px',
                 margin: '0 auto',
-                textAlign: 'center',
-                background: '#0e1730',
-                border: '1px solid rgba(255,255,255,0.08)',
-                borderRadius: 16,
-                padding: '3rem 2rem',
+                height: 700,
+                transition: 'height 0.35s ease',
+                background: '#0b1120',
               }}
             >
-              <h2
-                style={{
-                  color: '#f1f5f9',
-                  fontSize: 'clamp(1.4rem, 3vw, 2rem)',
-                  fontWeight: 800,
-                  marginBottom: '0.75rem',
-                }}
-              >
-                Book your AI Discovery Call
-              </h2>
-              <p
-                style={{
-                  color: '#94a3b8',
-                  fontSize: 16,
-                  lineHeight: 1.7,
-                  maxWidth: 460,
-                  margin: '0 auto 2rem',
-                }}
-              >
-                A free 30-minute call to map where AI automation can save you the most time. Pick a
-                slot that works for you.
-              </p>
-              <button
-                onClick={() => openCalendlyPopup()}
-                style={{
-                  background: '#2563eb',
-                  color: '#fff',
-                  fontSize: 16,
-                  fontWeight: 600,
-                  border: 'none',
-                  borderRadius: 10,
-                  padding: '0.95rem 2.25rem',
-                  cursor: 'pointer',
-                }}
-              >
-                Choose a time
-              </button>
+              {/* Skeleton overlay */}
+              {isLoading && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    zIndex: 10,
+                    background: '#0b1120',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    padding: '2.5rem 2rem',
+                    pointerEvents: 'none',
+                  }}
+                >
+                  <div
+                    style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem' }}
+                  >
+                    <div className="skel" style={{ width: 130, height: 18, borderRadius: 6 }} />
+                  </div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      marginBottom: '2rem',
+                    }}
+                  >
+                    <div className="skel" style={{ width: 340, height: 13, borderRadius: 6 }} />
+                    <div className="skel" style={{ width: 310, height: 13, borderRadius: 6 }} />
+                    <div className="skel" style={{ width: 180, height: 13, borderRadius: 6 }} />
+                  </div>
+                  <div
+                    style={{
+                      height: 1,
+                      background: 'rgba(255,255,255,0.08)',
+                      marginBottom: '1.5rem',
+                    }}
+                  />
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.85rem',
+                      marginBottom: '1.25rem',
+                    }}
+                  >
+                    <div
+                      className="skel"
+                      style={{ width: 44, height: 44, borderRadius: '50%', flexShrink: 0 }}
+                    />
+                    <div
+                      className="skel"
+                      style={{ flex: 1, height: 16, borderRadius: 6, maxWidth: 180 }}
+                    />
+                    <div
+                      className="skel"
+                      style={{ width: 22, height: 22, borderRadius: '50%', flexShrink: 0 }}
+                    />
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
+                    <div className="skel" style={{ width: '72%', height: 12, borderRadius: 6 }} />
+                    <div className="skel" style={{ width: '85%', height: 12, borderRadius: 6 }} />
+                    <div className="skel" style={{ width: '65%', height: 12, borderRadius: 6 }} />
+                    <div className="skel" style={{ width: '40%', height: 12, borderRadius: 6 }} />
+                  </div>
+                </div>
+              )}
+
+              {/* Calendly widget */}
+              <div
+                ref={widgetRef}
+                className="calendly-inline-widget"
+                data-url={CALENDLY_URL}
+                style={{ minWidth: '320px', height: '100%', width: '100%' }}
+              />
             </div>
           </AnimatedSection>
         </div>
       </section>
+
+      <style jsx global>{`
+        @keyframes shimmer {
+          0%   { background-position: -600px 0; }
+          100% { background-position:  600px 0; }
+        }
+        .skel {
+          background: linear-gradient(
+            90deg,
+            rgba(255,255,255,0.04) 0px,
+            rgba(125,211,252,0.10) 80px,
+            rgba(255,255,255,0.04) 160px
+          );
+          background-size: 600px 100%;
+          animation: shimmer 1.6s infinite linear;
+        }
+
+        /* ── Nuke all white backgrounds Calendly injects ── */
+        .calendly-inline-widget,
+        .calendly-inline-widget > div,
+        .calendly-inline-widget > div > div {
+          background: #0b1120 !important;
+          border: none !important;
+          box-shadow: none !important;
+          border-radius: 0 !important;
+          overflow: hidden !important;
+        }
+
+        /* ── The iframe itself ── */
+        .calendly-inline-widget iframe {
+          background: #0b1120 !important;
+          border: none !important;
+          display: block !important;
+          width: 100% !important;
+          /*
+           * overflow CSS cannot reach inside a cross-origin iframe — useless here.
+           * The scrollbar is killed by JS: we make the iframe 40px taller than its
+           * content via the postMessage listener (iframe.style.height set directly).
+           * This means the iframe never needs to scroll internally.
+           */
+          min-height: 700px;
+          transition: height 0.35s ease;
+        }
+      `}</style>
     </>
   )
 }
