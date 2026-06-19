@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { openCalendlyPopup } from './calendly'
 
 interface ButtonProps {
   children: React.ReactNode
@@ -60,7 +61,7 @@ export default function Button({
         rel="noopener noreferrer"
         onClick={isCalendly ? (e) => {
           e.preventDefault()
-          window.location.href = '/consultation'
+          openCalendlyPopup(href)
         } : undefined}
       >
         {children}
