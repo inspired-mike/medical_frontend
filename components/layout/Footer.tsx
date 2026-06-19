@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-secondary border-t border-glass-border pt-16 pb-8">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div>
             <p className="text-xl font-extrabold mb-4">
@@ -27,6 +27,18 @@ export default function Footer() {
                 </li>
               ))}
              
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-accent mb-4">Resources</p>
+            <ul className="flex flex-col gap-3">
+              <li>
+                <a href="https://calculator.impackta.ai" target="_blank" rel="noopener noreferrer" className="text-sm text-muted hover:text-accent transition-colors">
+                  Revenue Leak Calculator
+                </a>
+              </li>
             </ul>
           </div>
 
