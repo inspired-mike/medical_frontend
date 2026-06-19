@@ -70,19 +70,26 @@ export default function ContactPage() {
     }
 
     // ── Inject / reuse Calendly script ──
-    const existing = document.getElementById(CALENDLY_SCRIPT_ID) as HTMLScriptElement | null
-    if (existing) {
-      if (typeof (window as any).Calendly !== 'undefined') {
+    // Single, explicit init path. We deliberately do NOT use the data-url
+    // auto-init on the div, because the auto-init plus this call double-renders
+    // the widget and causes Calendly to drop the colour params (dark theme).
+    const initWidget = () => {
+      if (typeof (window as any).Calendly !== 'undefined' && widgetRef.current) {
         ;(window as any).Calendly.initInlineWidget({
           url: CALENDLY_URL,
           parentElement: widgetRef.current,
         })
       }
+    }
+    const existing = document.getElementById(CALENDLY_SCRIPT_ID) as HTMLScriptElement | null
+    if (existing) {
+      initWidget()
     } else {
       const script = document.createElement('script')
       script.id = CALENDLY_SCRIPT_ID
       script.src = CALENDLY_SCRIPT_SRC
       script.async = true
+      script.onload = initWidget
       script.onerror = () => {
         console.error('[Calendly] Script failed to load')
         markLoaded()
@@ -261,7 +268,6 @@ export default function ContactPage() {
               <div
                 ref={widgetRef}
                 className="calendly-inline-widget"
-                data-url={CALENDLY_URL}
                 style={{ minWidth: '320px', height: '100%', width: '100%' }}
               />
             </div>
