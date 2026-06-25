@@ -2,7 +2,6 @@ import CursorSpotlight from '@/components/layout/CursorSpotlight'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import ScrollProgressBar from '@/components/layout/ScrollProgressBar'
-import StickyBookCTA from '@/components/layout/StickyBookCTA'
 import ChatWidget from '@/components/ui/ChatWidget'
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
@@ -29,7 +28,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main>{children}</main>
         <Footer />
-        <StickyBookCTA />
         <ChatWidget />
       </body>
     </html>
