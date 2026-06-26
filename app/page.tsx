@@ -116,7 +116,7 @@ const whoItsFor = [
   },
   {
     title: 'High-Growth Ventures',
-    description: 'For businesses outgrowing their processes. We replace manual bottlenecks with intelligent systems that allow your team to scale output without increasing workload or burnout.',
+    description: 'For businesses outgrowing their processes. We replace the manual, repetitive work that slows you down with intelligent systems, so your team scales output without more workload or burnout.',
     image: '/images/ventures.png'
   },
   {
