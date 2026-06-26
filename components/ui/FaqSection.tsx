@@ -8,7 +8,7 @@ import SectionHeading from './SectionHeading'
 const faqs = [
   {
     q: "How fast can you deliver a custom AI system?",
-    a: "Most projects are live within 4-6 weeks. For more complex builds, we can often have a proof of concept running in under two weeks, so you see it working early and we refine it together before scaling across your business."
+    a: "Most projects are live within 4-6 weeks. For more complex builds, we can often have a proof of concept running in under two weeks, so you see it working early and we refine it together before building out the full system."
   },
   {
     q: "How does pricing work?",

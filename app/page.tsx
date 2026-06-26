@@ -111,12 +111,12 @@ const services = servicesRaw.map(s => ({
 const whoItsFor = [
   {
     title: 'Founders & Independent Professionals',
-    description: 'Built for those running lean. We automate repetitive admin and day-to-day tasks so you can focus on high-value work that drives your business forward.',
+    description: 'Built for those running lean. We automate the routine admin and day-to-day tasks so you can focus on the high-value work that drives your business forward.',
     image: '/images/founders.png'
   },
   {
     title: 'High-Growth Ventures',
-    description: 'For businesses outgrowing their processes. We replace the manual, repetitive work that slows you down with intelligent systems, so your team scales output without more workload or burnout.',
+    description: 'For businesses outgrowing their processes. We replace the manual work that slows you down with intelligent systems, so your team can take on more without the extra workload or burnout.',
     image: '/images/ventures.png'
   },
   {
